@@ -22,20 +22,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cache Tectonic packages
-        uses: actions/cache@v4
+      - name: Set up TeX Live (minimal, cached)
+        uses: teatimeguest/setup-texlive-action@v3
         with:
-          path: ~/.cache/Tectonic
-          key: tectonic-${{ hashFiles('cv.tex') }}
-          restore-keys: tectonic-
-
-      - name: Set up Tectonic
-        uses: wtfjoke/setup-tectonic@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          packages: >-
+            scheme-basic
+            preprint
+            enumitem
+            geometry
+            cm-super
 
       - name: Compile cv.tex
-        run: tectonic cv.tex
+        run: pdflatex -interaction=nonstopmode -halt-on-error cv.tex
 
       - name: Commit cv.pdf
         run: |
