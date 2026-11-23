@@ -22,15 +22,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up TeX Live (minimal, cached)
-        uses: teatimeguest/setup-texlive-action@v3
+      - name: Cache TeX Live
+        id: texlive-cache
+        uses: actions/cache@v4
         with:
-          packages: >-
-            scheme-basic
-            preprint
-            enumitem
-            geometry
-            cm-super
+          path: ~/texlive
+          key: texlive-${{ runner.os }}-${{ hashFiles('.github/workflows/build-cv.yml') }}
+
+      - name: Install minimal TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/install-tl && cd /tmp/install-tl
+          curl -fsSL https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
+            | tar -xz --strip-components=1
+          cat > texlive.profile <<PROFILE
+          selected_scheme scheme-basic
+          TEXDIR $HOME/texlive
+          TEXMFLOCAL $HOME/texlive/texmf-local
+          TEXMFSYSVAR $HOME/texlive/texmf-var
+          TEXMFSYSCONFIG $HOME/texlive/texmf-config
+          instopt_adjustpath 0
+          tlpdbopt_install_docfiles 0
+          tlpdbopt_install_srcfiles 0
+          PROFILE
+          perl ./install-tl --no-interaction --profile=texlive.profile
+          "$HOME/texlive/bin/x86_64-linux/tlmgr" install preprint enumitem geometry cm-super
+
+      - name: Add TeX Live to PATH
+        run: echo "$HOME/texlive/bin/x86_64-linux" >> "$GITHUB_PATH"
 
       - name: Compile cv.tex
         run: pdflatex -interaction=nonstopmode -halt-on-error cv.tex
