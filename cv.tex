@@ -1,0 +1,158 @@
+\documentclass[a4paper]{article}
+    \usepackage{fullpage}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{textcomp}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{enumitem}
+    \setlist[itemize]{itemsep=0pt, topsep=1pt, parsep=0pt, partopsep=0pt}
+    \textheight=10in
+    \pagestyle{empty}
+    \raggedright
+    \usepackage[left=0.5in,right=0.5in,bottom=0.5in,top=0.6in]{geometry}
+
+%\renewcommand{\encodingdefault}{cg}
+%\renewcommand{\rmdefault}{lgrcmr}
+
+\def\bull{\vrule height 0.8ex width .7ex depth -.1ex }
+
+
+\newcommand{\area} [2] {
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2
+    \end{verse}
+}
+
+\newcommand{\lineunder} {
+    \vspace*{-8pt} \\
+    \hspace*{-18pt} \hrulefill \\
+}
+
+\newcommand{\header} [1] {
+    {\hspace*{-18pt}\vspace*{6pt} \large \textbf{\textsc{#1}}}
+    \vspace*{-6pt} \lineunder
+}
+
+\newcommand{\employer} [3] {
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact} [3] {
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-8pt}
+}
+
+\newenvironment{achievements} {
+    \begin{list}
+        {$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}
+    \end{list}
+}
+
+\newcommand{\schoolwithcourses} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+    \vspace*{5pt}
+}
+
+\newcommand{\school} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+}
+
+\begin{document}
+\vspace*{-40pt}
+
+%==== Profile ====%
+\vspace*{-10pt}
+\begin{center}
+	{\Huge \scshape{Mohammad Ridwan Hady Arifin}}\\
+	Jakarta, Indonesia $\cdot$ ridwanharifin@gmail.com $\cdot$ (+62) 853-2913-1808 $\cdot$ linkedin.com/in/ridwanhady\\
+\end{center}
+
+\header{Professional Summary}
+\textbf{Senior Software Engineer}
+\newline
+Senior Software Engineer with 6+ years of experience in backend, platform, and systems engineering. Currently building GoTo Group's FinOps platform, the single source of truth for cloud cost and finance data across AWS, GCP, and Alibaba Cloud. Strong background in Go, Kotlin, Kubernetes, data pipelines, and AI tooling (MCP).
+\vspace{2mm}
+
+%==== Experience ====%
+\header{Work Experience}
+\vspace{1mm}
+
+\textbf{Gopay, GoTo Group} \hfill Jakarta, Indonesia\\
+\textit{Senior Software Engineer, FinOps Platform} \hfill Apr 2026 - Present\\
+\begin{itemize}
+    \item Built a single source of truth for cloud cost and finance data across GoTo Group.
+    \item Started and led a Go control plane on Argo Workflows, replacing scheduler-driven ETL with a dependency-aware DAG and partial reruns, cutting load time by 50\%.
+    \item Built Savings Plans analytics end-to-end: ETL, coverage and utilization APIs, and a purchase planner that recommends daily commitment to hit target coverage.
+    \item Rebuilt the frontend in Next.js and React 19 (Cost Explorer, shareable dashboards with version history, self-serve pipeline admin), speeding up queries with pre-aggregated Apache Doris materialized views.
+    \item Designed Kubernetes cost allocation with idle-cost redistribution for fair team attribution, and launched Unit Cost metrics linking cloud spend to business growth.
+    \item Delivered an MCP server and AI-assistant skills, plus an in-app assistant and Lark chatbot, so teams can query cost, budget, and dashboard data in natural language.
+\end{itemize}
+\textit{Software Engineer II} \hfill Apr 2024 - Apr 2026\\
+\begin{itemize}
+    \item Engineered a resource (VM, Disk) and Kubernetes workload optimizer, reducing cloud expenditure by up to 20\%.
+    \item Built a Grafana-like custom BI dashboard for cloud cost, serving customizable reports for multiple users.
+    \item Designed and launched a proactive Cloud Cost Alert system that flags cost anomalies to stakeholders.
+    \item Migrated aggregated cloud billing data and pipelines from BigQuery to MaxCompute without loss of performance.
+    \item Led Infra Governance's Alibaba Cloud migration for all Merchant Payments services as primary technical POC.
+\end{itemize}
+\textit{Software Engineer} \hfill May 2022 - Apr 2024\\
+\begin{itemize}
+    \item Developed a consolidated Cloud Cost Dashboard for multi-cloud (GCP, AWS, Alibaba) and multi-entity expenses.
+    \item Primary maintainer of Yggdrasil, Gopay's configuration management system used to deploy all services.
+    \item Built a Resource Tagging Service automating resource tagging, improving cost attribution and monitoring.
+\end{itemize}
+Tech Stack: Go, Kubernetes, Argo Workflows, Terraform, AWS, GCP, Alibaba Cloud, Apache Doris, BigQuery, MaxCompute, Next.js.
+\vspace{1.5mm}
+
+\textbf{Traveloka} \hfill Jakarta, Indonesia\\
+\textit{Backend Engineer} \hfill Oct 2021 - May 2022\\
+\begin{itemize}
+    \item Optimized the Coupons API with a new filtering mechanism, reducing latency by 60\%.
+    \item Implemented a gift voucher cross-selling feature across multiple product tunnels, driving revenue and engagement.
+    \item Developed and launched key features for the Traveloka Priority rewards program, increasing user retention.
+\end{itemize}
+Tech Stack: Kotlin, Java, PostgreSQL, AWS.
+\vspace{1.5mm}
+
+\textbf{AdaKerja} \hfill Remote\\
+\textit{Full Stack Engineer} \hfill May 2020 - May 2021\\
+\begin{itemize}
+    \item Redesigned the user registration flow from 10+ steps to just 2, significantly reducing new-user friction.
+    \item Doubled job search accuracy through location query optimization and personalization algorithms.
+    \item Built a BigQuery--MongoDB pipeline automating trial account provisioning, plus gamification features to lift retention.
+\end{itemize}
+Tech Stack: Node, Express, MongoDB, AWS, React, Redux, React Native.
+\vspace{1.5mm}
+
+%==== Certifications ====%
+\header{Certifications}
+\textbf{CKA: Certified Kubernetes Administrator (2026)} \hfill The Linux Foundation\\
+\textbf{CKAD: Certified Kubernetes Application Developer (2026)} \hfill The Linux Foundation\\
+\textbf{FinOps Certified Engineer (2026)} \hfill FinOps Foundation\\
+\textbf{Associate Cloud Engineer (2023)} \hfill Google Cloud\\
+\vspace{2mm}
+
+
+%==== Education ====%
+\header{Education}
+\textbf{Bandung Institute of Technology}\hfill Bandung, Indonesia\\
+BS in Computer Science, Cum Laude \hfill 2017 - 2021\\
+\vspace{2mm}
+
+\header{Skills}
+\begin{tabular}{ l l }
+	Programming Languages: & Go, Kotlin, TypeScript/JavaScript, Python, Terraform \\
+	Cloud \& Platform:     & Kubernetes, Argo Workflows, AWS, GCP, Alibaba Cloud \\
+	Data \& Frontend:      & PostgreSQL, Apache Doris, BigQuery, MaxCompute, MongoDB, Next.js, React \\
+	Languages:             & Indonesian (Native), English (Professional Working) \\
+\end{tabular}
+\vspace{2mm}
+\end{document}
